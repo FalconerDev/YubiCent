@@ -1,0 +1,17 @@
+---
+- name: Install EPEL repository and pam_yubico packages for Yubikey deployment
+  hosts: [SPECIFY YOUR HOSTS, WHETHER BY FILE OR BY DNS NAME]
+  tasks:
+    # Install the EPEL repository to prep for Yubi!
+    - name: Install EPEL
+      yum:
+        name: 'epel-release'
+        state: latest
+      when: ansible_os_family == "RedHat"
+
+    # Install the pam_yubico package to prep for Yubi!
+    - name: Install Yubi
+      yum:
+        name: 'pam_yubico'
+        state: latest
+      when: ansible_os_family == "RedHat"
